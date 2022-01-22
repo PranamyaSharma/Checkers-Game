@@ -6,7 +6,7 @@ color_red = (255, 0, 0)
 color_white = (255, 255, 255)
 
 def minimax(position, depth, max_player, game): # Position: Current state of the board, depth: how far to extend the tree, max_player(true) causes maximization else minimization
-    print(position.determine_winner())
+    print (position.white_king)
     if (depth == 0 or position.determine_winner() != None):
         return position.evaluate_board(), position
     if max_player: #To maximize the score
@@ -36,7 +36,7 @@ def get_all_moves(board, color, game): #Check all the moves for all pieces
             temp_board =  deepcopy(board)
             temp_piece = temp_board.get_piece(piece.row, piece.column)
             new_board = move_simulation(temp_piece, move, temp_board, game, skip)
-            moves.append([new_board])
+            moves.append(new_board)
     
     return moves
 

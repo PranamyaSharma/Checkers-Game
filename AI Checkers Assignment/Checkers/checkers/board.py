@@ -15,7 +15,7 @@ class Board: #Class that represents the game board
         win.fill(color_turqoise)
         for row in range(rows):
             for col in range(row % 2, columns, 2):
-                pygame.draw.rect(win, color_grey, (row * square_size , col * square_size, square_size, square_size))    
+                pygame.draw.rect(win, color_grey, (row * square_size , col * square_size, square_size, square_size))
 
     def create_board(self): #Creates a representation of the board and add the pieces to it
         for row in range(rows):
@@ -44,11 +44,14 @@ class Board: #Class that represents the game board
         piece.move(row, column)
 
         if row == 0 or row == rows - 1: #Makes the piece a king if it touches the top or bottom row
-            piece.make_king()
+            
             if piece.color == color_white:
-                self.white_king += 1
+                if piece.is_king == False:
+                    self.white_king += 1
             else:
-                self.red_king += 1
+                if piece.is_king == False:
+                    self.red_king += 1
+            piece.make_king()
 
     def get_piece(self, row, column):
         return self.board[row][column]
@@ -153,7 +156,7 @@ class Board: #Class that represents the game board
         return None
     
     def evaluate_board(self): #Given the state of the board, determines its score
-        return (self.white_remaining - self.red_remaining) + ((self.white_king * 0.5) - (self.red_king * 0.5)) #Determining the score through the number of red and white pieces ramaining, as well as the number of kings remaining
+        return (self.white_remaining - self.red_remaining) + ((self.white_king * 1.5) - (self.red_king * 1.5)) #Determining the score through the number of red and white pieces ramaining, as well as the number of kings remaining
     
     def get_pieces_all(self, color): #Returns all the pieces of a certain color
         pieces = [] #Array to store the pieces of a particular color
