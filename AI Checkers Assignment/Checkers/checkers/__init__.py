@@ -1,0 +1,1 @@
+#Makes it so that the checkers folder acts as a python package and values can be imported from it
